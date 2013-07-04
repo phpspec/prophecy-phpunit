@@ -1,0 +1,31 @@
+{
+    "name": "phpspec/prophecy-phpunit",
+    "description": "PhpUnit test case integrating the Prophecy mocking library",
+    "keywords": ["Phpunit", "Prophecy"],
+    "homepage": "http://phpspec.org",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Christophe Coevoet",
+            "email": "stof@notk.org"
+        }
+    ],
+    "require": {
+        "phpspec/prophecy": "~1.0"
+    },
+    "suggest": {
+        "phpunit/phpunit": "if it is not installed globally"
+    },
+    "autoload": {
+        "psr-0": {
+            "Prophecy\\PhpUnit\\": ""
+        }
+    },
+    "target-dir": "Prophecy/PhpUnit",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
