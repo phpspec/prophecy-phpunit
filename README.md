@@ -57,7 +57,7 @@ You can read more about Composer on its [official webpage](http://getcomposer.or
 
 ## How to use it
 
-The special ``ProphecyTestCase`` exposes a method ``prophecize($classOrInterface = null)``
+The special ``ProphecyTestCase`` exposes a method ``prophesize($classOrInterface = null)``
 to use Prophecy.
 For the usage of the Prophecy doubles, please refer to the [Prophecy documentation](https://github.com/phpspec/prophecy).
 
