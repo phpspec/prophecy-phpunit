@@ -21,7 +21,7 @@ class ProphecyTestCase extends \PHPUnit_Framework_TestCase
         return $this->prophet->prophesize($classOrInterface);
     }
 
-    protected function setup()
+    protected function setUp()
     {
         $this->prophet = new Prophet();
     }
@@ -31,7 +31,7 @@ class ProphecyTestCase extends \PHPUnit_Framework_TestCase
         $this->prophet->checkPredictions();
     }
 
-    protected function teardown()
+    protected function tearDown()
     {
         $this->prophet = null;
     }
