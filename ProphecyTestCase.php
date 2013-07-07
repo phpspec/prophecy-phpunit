@@ -1,6 +1,6 @@
 <?php
 
-namespace Prophecy\PhpUnit;
+namespace Prophecy\PHPUnit;
 
 use Prophecy\Exception\Prediction\PredictionException;
 use Prophecy\Prophet;
