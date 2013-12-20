@@ -3,6 +3,8 @@
 namespace Prophecy\PhpUnit;
 
 use Prophecy\Exception\Prediction\PredictionException;
+use Prophecy\Prophecy\MethodProphecy;
+use Prophecy\Prophecy\ObjectProphecy;
 use Prophecy\Prophet;
 
 class ProphecyTestCase extends \PHPUnit_Framework_TestCase
@@ -28,8 +30,26 @@ class ProphecyTestCase extends \PHPUnit_Framework_TestCase
 
     protected function assertPostConditions()
     {
-        $this->addToAssertionCount(count($this->prophet->getProphecies()));
+        $this->addToAssertionCount($this->countAssertionsMade());
         $this->prophet->checkPredictions();
+    }
+
+    protected function countAssertionsMade() {
+        $assertionCount = 0;
+
+        foreach($this->prophet->getProphecies() as $prophecy) {
+            if ($prophecy instanceof MethodProphecy) {
+                $assertionCount++;
+            } elseif($prophecy instanceof ObjectProphecy) {
+                // Each object prophecy will have a number of promises grouped by
+                // the method
+                foreach($prophecy->getMethodProphecies() as $singleMethodPromises) {
+                    $assertionCount += count($singleMethodPromises);
+                }
+            }
+        }
+
+        return $assertionCount;
     }
 
     protected function tearDown()
