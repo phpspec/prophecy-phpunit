@@ -20,6 +20,14 @@ class ProphecyTestCaseTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(1, $result);
     }
 
+    public function testAssertionCount()
+    {
+        $test = new Success('testMethod');
+        $result = $test->run();
+
+        $this->assertEquals(1, $test->getNumAssertions());
+    }
+
     public function testPredictionFailureInTest()
     {
         $test = new Failure('testMethod');

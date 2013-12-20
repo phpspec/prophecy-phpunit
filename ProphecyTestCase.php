@@ -28,6 +28,7 @@ class ProphecyTestCase extends \PHPUnit_Framework_TestCase
 
     protected function assertPostConditions()
     {
+        $this->addToAssertionCount(count($this->prophet->getProphecies()));
         $this->prophet->checkPredictions();
     }
 
