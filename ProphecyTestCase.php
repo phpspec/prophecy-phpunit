@@ -12,6 +12,11 @@ class ProphecyTestCase extends \PHPUnit_Framework_TestCase
      */
     private $prophet;
 
+    /**
+     * @param string|null $classOrInterface
+     * @return \Prophecy\Prophecy\ObjectProphecy
+     * @throws \LogicException
+     */
     protected function prophesize($classOrInterface = null)
     {
         if (null === $this->prophet) {
