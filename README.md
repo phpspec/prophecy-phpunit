@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/phpspec/prophecy-phpunit.png?branch=master)](https://travis-ci.org/phpspec/prophecy-phpunit)
 
-Prophecy PhpUnit integrates the [Prophecy](https://github.com/phpspec/prophecy) mocking
+Prophecy PHPUnit integrates the [Prophecy](https://github.com/phpspec/prophecy) mocking
 library with [PHPUnit](http://phpunit.de) to provide an easier mocking in your testsuite.
 
 
@@ -11,7 +11,7 @@ library with [PHPUnit](http://phpunit.de) to provide an easier mocking in your t
 ```php
 <?php
 
-use Prophecy\PhpUnit\ProphecyTestCase;
+use Prophecy\PHPUnit\ProphecyTestCase;
 
 class UserTest extends ProphecyTestCase
 {
@@ -33,7 +33,7 @@ class UserTest extends ProphecyTestCase
 
 ### Prerequisites
 
-Prophecy PhpUnit requires PHP 5.3.3 or greater.
+Prophecy PHPUnit requires PHP 5.3.3 or greater.
 
 ### Setup through composer
 

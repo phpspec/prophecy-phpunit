@@ -1,12 +1,12 @@
 <?php
 
-namespace Prophecy\PhpUnit\Tests;
+namespace Prophecy\PHPUnit\Tests;
 
-use Prophecy\PhpUnit\Tests\Fixtures\Error;
-use Prophecy\PhpUnit\Tests\Fixtures\Failure;
-use Prophecy\PhpUnit\Tests\Fixtures\FailureInTearDown;
-use Prophecy\PhpUnit\Tests\Fixtures\SetupOverride;
-use Prophecy\PhpUnit\Tests\Fixtures\Success;
+use Prophecy\PHPUnit\Tests\Fixtures\Error;
+use Prophecy\PHPUnit\Tests\Fixtures\Failure;
+use Prophecy\PHPUnit\Tests\Fixtures\FailureInTearDown;
+use Prophecy\PHPUnit\Tests\Fixtures\SetupOverride;
+use Prophecy\PHPUnit\Tests\Fixtures\Success;
 
 class ProphecyTestCaseTest extends \PHPUnit_Framework_TestCase
 {

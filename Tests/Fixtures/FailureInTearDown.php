@@ -1,8 +1,8 @@
 <?php
 
-namespace Prophecy\PhpUnit\Tests\Fixtures;
+namespace Prophecy\PHPUnit\Tests\Fixtures;
 
-use Prophecy\PhpUnit\ProphecyTestCase;
+use Prophecy\PHPUnit\ProphecyTestCase;
 
 class FailureInTearDown extends ProphecyTestCase
 {
