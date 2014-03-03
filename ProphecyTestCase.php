@@ -5,7 +5,7 @@ namespace Prophecy\PhpUnit;
 use Prophecy\Exception\Prediction\PredictionException;
 use Prophecy\Prophet;
 
-class ProphecyTestCase extends \PHPUnit_Framework_TestCase
+abstract class ProphecyTestCase extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var Prophet
