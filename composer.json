@@ -2,7 +2,7 @@
     "name": "phpspec/prophecy-phpunit",
     "description": "PhpUnit test case integrating the Prophecy mocking library",
     "keywords": ["Phpunit", "Prophecy"],
-    "homepage": "http://phpspec.org",
+    "homepage": "http://phpspec.net",
     "type": "library",
     "license": "MIT",
     "authors": [
