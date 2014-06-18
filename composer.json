@@ -9,6 +9,10 @@
         {
             "name": "Christophe Coevoet",
             "email": "stof@notk.org"
+        },
+        {
+            "name": "Mike Fisher",
+            "email": "mike@mbfisher.com"
         }
     ],
     "require": {
