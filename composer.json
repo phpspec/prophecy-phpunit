@@ -12,6 +12,7 @@
         }
     ],
     "require": {
+        "php": ">=5.3.3",
         "phpspec/prophecy": "~1.0"
     },
     "suggest": {
