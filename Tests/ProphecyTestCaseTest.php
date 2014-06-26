@@ -2,6 +2,7 @@
 
 namespace Prophecy\PhpUnit\Tests;
 
+use Prophecy\PhpUnit\Tests\Fixtures\DoubleAssertion;
 use Prophecy\PhpUnit\Tests\Fixtures\Error;
 use Prophecy\PhpUnit\Tests\Fixtures\Failure;
 use Prophecy\PhpUnit\Tests\Fixtures\FailureInTearDown;
@@ -18,6 +19,22 @@ class ProphecyTestCaseTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(0, $result->errorCount());
         $this->assertEquals(0, $result->failureCount());
         $this->assertCount(1, $result);
+    }
+
+    public function testAssertionCountForSingleAssertion()
+    {
+        $test = new Success('testMethod');
+        $result = $test->run();
+
+        $this->assertEquals(1, $test->getNumAssertions());
+    }
+
+    public function testAssertionCountForDoubleAssertion()
+    {
+        $test = new DoubleAssertion('testMethod');
+        $result = $test->run();
+
+        $this->assertEquals(2, $test->getNumAssertions());
     }
 
     public function testPredictionFailureInTest()
