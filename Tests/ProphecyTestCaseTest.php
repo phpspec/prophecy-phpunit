@@ -49,14 +49,4 @@ class ProphecyTestCaseTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(0, $result->failureCount());
         $this->assertCount(1, $result);
     }
-
-    public function testBadSetupOverride()
-    {
-        $test = new SetupOverride('testMethod');
-        $result = $test->run();
-
-        $this->assertEquals(1, $result->errorCount());
-        $this->assertEquals(0, $result->failureCount());
-        $this->assertCount(1, $result);
-    }
 }
