@@ -19,21 +19,12 @@ abstract class ProphecyTestCase extends \PHPUnit_Framework_TestCase
      */
     protected function prophesize($classOrInterface = null)
     {
-        if (null === $this->prophet) {
-            throw new \LogicException(sprintf('The setUp method of %s must be called to initialize Prophecy.', __CLASS__));
-        }
-
-        return $this->prophet->prophesize($classOrInterface);
-    }
-
-    protected function setUp()
-    {
-        $this->prophet = new Prophet();
+        return $this->getProphet()->prophesize($classOrInterface);
     }
 
     protected function assertPostConditions()
     {
-        $this->prophet->checkPredictions();
+        $this->getProphet()->checkPredictions();
     }
 
     protected function tearDown()
@@ -48,5 +39,17 @@ abstract class ProphecyTestCase extends \PHPUnit_Framework_TestCase
         }
 
         return parent::onNotSuccessfulTest($e);
+    }
+
+    /**
+     * @return Prophet
+     */
+    private function getProphet()
+    {
+        if (null === $this->prophet) {
+            $this->prophet = new Prophet();
+        }
+
+        return $this->prophet;
     }
 }

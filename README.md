@@ -61,6 +61,6 @@ The special ``ProphecyTestCase`` exposes a method ``prophesize($classOrInterface
 to use Prophecy.
 For the usage of the Prophecy doubles, please refer to the [Prophecy documentation](https://github.com/phpspec/prophecy).
 
-If you want to add some logic in the ``setUp`` and ``tearDown`` methods of your testcase,
-don't forget to call the parent methods to keep the initialization and prediction checking
-of Prophecy.
+If you want to add some logic in the ``tearDown`` method you are advised to
+call the parent method - doing so will ensure that the Prophect object has
+been unset before the next test case runs.
