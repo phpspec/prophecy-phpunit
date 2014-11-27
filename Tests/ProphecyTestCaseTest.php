@@ -25,6 +25,7 @@ class ProphecyTestCaseTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(0, $result->errorCount());
         $this->assertEquals(0, $result->failureCount());
         $this->assertCount(1, $result);
+        $this->assertEquals(1, $test->getNumAssertions());
     }
 
     public function testSpyPredictionFailure()
@@ -35,6 +36,7 @@ class ProphecyTestCaseTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(0, $result->errorCount());
         $this->assertEquals(1, $result->failureCount());
         $this->assertCount(1, $result);
+        $this->assertEquals(1, $test->getNumAssertions());
     }
 
     public function testMockPredictionFailure()
@@ -45,6 +47,7 @@ class ProphecyTestCaseTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(0, $result->errorCount());
         $this->assertEquals(1, $result->failureCount());
         $this->assertCount(1, $result);
+        $this->assertEquals(1, $test->getNumAssertions());
     }
 
     public function testDoublingError()
@@ -55,5 +58,6 @@ class ProphecyTestCaseTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(1, $result->errorCount());
         $this->assertEquals(0, $result->failureCount());
         $this->assertCount(1, $result);
+        $this->assertEquals(0, $test->getNumAssertions());
     }
 }

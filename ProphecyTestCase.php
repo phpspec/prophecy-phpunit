@@ -30,7 +30,23 @@ abstract class ProphecyTestCase extends \PHPUnit_Framework_TestCase
             return;
         }
 
-        $this->prophet->checkPredictions();
+        try {
+            $this->prophet->checkPredictions();
+        } catch (\Exception $e) {
+            /** Intentionally left empty */
+        }
+
+        foreach ($this->prophet->getProphecies() as $objectProphecy) {
+            foreach ($objectProphecy->getMethodProphecies() as $methodProphecies) {
+                foreach ($methodProphecies as $methodProphecy) {
+                    $this->addToAssertionCount(count($methodProphecy->getCheckedPredictions()));
+                }
+            }
+        }
+
+        if (isset($e)) {
+            throw $e;
+        }
     }
 
     protected function tearDown()

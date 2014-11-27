@@ -13,7 +13,7 @@
     ],
     "require": {
         "php": ">=5.3.3",
-        "phpspec/prophecy": "~1.0"
+        "phpspec/prophecy": "~1.3"
     },
     "suggest": {
         "phpunit/phpunit": "if it is not installed globally"
