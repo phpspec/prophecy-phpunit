@@ -19,11 +19,10 @@
         "phpunit/phpunit": "if it is not installed globally"
     },
     "autoload": {
-        "psr-0": {
+        "psr-4": {
             "Prophecy\\PhpUnit\\": ""
         }
     },
-    "target-dir": "Prophecy/PhpUnit",
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.x-dev"
