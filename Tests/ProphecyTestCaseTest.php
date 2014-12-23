@@ -3,8 +3,8 @@
 namespace Prophecy\PhpUnit\Tests;
 
 use Prophecy\PhpUnit\Tests\Fixtures\Error;
-use Prophecy\PhpUnit\Tests\Fixtures\Failure;
-use Prophecy\PhpUnit\Tests\Fixtures\FailureInTearDown;
+use Prophecy\PhpUnit\Tests\Fixtures\MockFailure;
+use Prophecy\PhpUnit\Tests\Fixtures\SpyFailure;
 use Prophecy\PhpUnit\Tests\Fixtures\Success;
 
 class ProphecyTestCaseTest extends \PHPUnit_Framework_TestCase
@@ -27,9 +27,9 @@ class ProphecyTestCaseTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(1, $result);
     }
 
-    public function testPredictionFailureInTest()
+    public function testSpyPredictionFailure()
     {
-        $test = new Failure('testMethod');
+        $test = new SpyFailure('testMethod');
         $result = $test->run();
 
         $this->assertEquals(0, $result->errorCount());
@@ -37,9 +37,9 @@ class ProphecyTestCaseTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(1, $result);
     }
 
-    public function testPredictionFailureInTearDown()
+    public function testMockPredictionFailure()
     {
-        $test = new FailureInTearDown('testMethod');
+        $test = new MockFailure('testMethod');
         $result = $test->run();
 
         $this->assertEquals(0, $result->errorCount());

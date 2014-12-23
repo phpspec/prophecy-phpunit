@@ -4,7 +4,7 @@ namespace Prophecy\PhpUnit\Tests\Fixtures;
 
 use Prophecy\PhpUnit\ProphecyTestCase;
 
-class FailureInTearDown extends ProphecyTestCase
+class MockFailure extends ProphecyTestCase
 {
     public function testMethod()
     {
