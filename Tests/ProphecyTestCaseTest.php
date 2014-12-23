@@ -5,11 +5,18 @@ namespace Prophecy\PhpUnit\Tests;
 use Prophecy\PhpUnit\Tests\Fixtures\Error;
 use Prophecy\PhpUnit\Tests\Fixtures\Failure;
 use Prophecy\PhpUnit\Tests\Fixtures\FailureInTearDown;
-use Prophecy\PhpUnit\Tests\Fixtures\SetupOverride;
 use Prophecy\PhpUnit\Tests\Fixtures\Success;
 
 class ProphecyTestCaseTest extends \PHPUnit_Framework_TestCase
 {
+    protected function setUp()
+    {
+        // Define the constant because our tests are running PHPUnit testcases themselves
+        if (!defined('PHPUNIT_TESTSUITE')) {
+            define('PHPUNIT_TESTSUITE', true);
+        }
+    }
+
     public function testSuccess()
     {
         $test = new Success('testMethod');
