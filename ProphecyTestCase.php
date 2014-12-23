@@ -12,6 +12,8 @@ abstract class ProphecyTestCase extends \PHPUnit_Framework_TestCase
      */
     private $prophet;
 
+    private $prophecyAssertionsCounted = false;
+
     /**
      * @param string|null $classOrInterface
      *
@@ -36,13 +38,7 @@ abstract class ProphecyTestCase extends \PHPUnit_Framework_TestCase
             /** Intentionally left empty */
         }
 
-        foreach ($this->prophet->getProphecies() as $objectProphecy) {
-            foreach ($objectProphecy->getMethodProphecies() as $methodProphecies) {
-                foreach ($methodProphecies as $methodProphecy) {
-                    $this->addToAssertionCount(count($methodProphecy->getCheckedPredictions()));
-                }
-            }
-        }
+        $this->countProphecyAssertions();
 
         if (isset($e)) {
             throw $e;
@@ -51,6 +47,11 @@ abstract class ProphecyTestCase extends \PHPUnit_Framework_TestCase
 
     protected function tearDown()
     {
+        if (null !== $this->prophet && !$this->prophecyAssertionsCounted) {
+            // Some Prophecy assertions may have been done in tests themselves even when a failure happened before checking mock objects.
+            $this->countProphecyAssertions();
+        }
+
         $this->prophet = null;
     }
 
@@ -73,5 +74,18 @@ abstract class ProphecyTestCase extends \PHPUnit_Framework_TestCase
         }
 
         return $this->prophet;
+    }
+
+    private function countProphecyAssertions()
+    {
+        $this->prophecyAssertionsCounted = true;
+
+        foreach ($this->prophet->getProphecies() as $objectProphecy) {
+            foreach ($objectProphecy->getMethodProphecies() as $methodProphecies) {
+                foreach ($methodProphecies as $methodProphecy) {
+                    $this->addToAssertionCount(count($methodProphecy->getCheckedPredictions()));
+                }
+            }
+        }
     }
 }
