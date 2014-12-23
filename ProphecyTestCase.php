@@ -8,23 +8,29 @@ use Prophecy\Prophet;
 abstract class ProphecyTestCase extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var Prophet
+     * @var Prophet|null
      */
     private $prophet;
 
     /**
      * @param string|null $classOrInterface
+     *
      * @return \Prophecy\Prophecy\ObjectProphecy
-     * @throws \LogicException
      */
     protected function prophesize($classOrInterface = null)
     {
         return $this->getProphet()->prophesize($classOrInterface);
     }
 
-    protected function assertPostConditions()
+    protected function verifyMockObjects()
     {
-        $this->getProphet()->checkPredictions();
+        parent::verifyMockObjects();
+
+        if (null === $this->prophet) {
+            return;
+        }
+
+        $this->prophet->checkPredictions();
     }
 
     protected function tearDown()
