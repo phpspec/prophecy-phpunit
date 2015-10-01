@@ -1,5 +1,7 @@
 # Prophecy
 
+## This package is not maintained anymore. Prophecy is supported in PHPUnit directly as of PHPUnit 4.5, making this package useless.
+
 [![Build Status](https://travis-ci.org/phpspec/prophecy-phpunit.png?branch=master)](https://travis-ci.org/phpspec/prophecy-phpunit)
 
 Prophecy PhpUnit integrates the [Prophecy](https://github.com/phpspec/prophecy) mocking
