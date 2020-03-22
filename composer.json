@@ -11,12 +11,19 @@
             "email": "stof@notk.org"
         }
     ],
-    "require": {
-        "php": ">=5.3.3",
-        "phpspec/prophecy": "~1.3"
+    "config": {
+        "platform": {
+            "php": "7.3.0"
+        },
+        "optimize-autoloader": true,
+        "sort-packages": true
     },
-    "suggest": {
-        "phpunit/phpunit": "if it is not installed globally"
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^7.3",
+        "phpspec/prophecy": "^1.10",
+        "phpunit/phpunit": "^9.1"
     },
     "autoload": {
         "psr-4": {
@@ -25,7 +32,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0.x-dev"
+            "dev-master": "2.0.x-dev"
         }
     }
 }

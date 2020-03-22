@@ -1,68 +1,19 @@
-# Prophecy
+# phpspec/prophecy-phpunit
 
-## This package is not maintained anymore. Prophecy is supported in PHPUnit directly as of PHPUnit 4.5, making this package useless.
+This component integrated `phpspec/prophecy-phpunit` with `phpunit/phpunit`.
 
-[![Build Status](https://travis-ci.org/phpspec/prophecy-phpunit.png?branch=master)](https://travis-ci.org/phpspec/prophecy-phpunit)
-
-Prophecy PhpUnit integrates the [Prophecy](https://github.com/phpspec/prophecy) mocking
-library with [PHPUnit](http://phpunit.de) to provide an easier mocking in your testsuite.
-
-
-## Usage
-
-```php
-<?php
-
-use Prophecy\PhpUnit\ProphecyTestCase;
-
-class UserTest extends ProphecyTestCase
-{
-    public function testPasswordHashing()
-    {
-        $hasher = $this->prophesize('App\Security\Hasher');
-        $user   = new App\Entity\User($hasher->reveal());
-
-        $hasher->generateHash($user, 'qwerty')->willReturn('hashed_pass');
-
-        $user->setPassword('qwerty');
-
-        $this->assertEquals('hashed_pass', $user->getPassword());
-    }
-}
-```
+Starting with version 4.5 (released in February 2015), [PHPUnit](https://phpunit.de/) bundled [phpspec/prophecy](https://github.com/phpspec/prophecy) as an alternative to its own test double functionality. Starting with PHPUnit 9.1 (released in April 2020), this bundled integration of Prophecy is deprecated. It will removed in PHPUnit (released in February 2021).
 
 ## Installation
 
-### Prerequisites
+You can add this library as a local, per-project dependency to your project using [Composer](https://getcomposer.org/):
 
-Prophecy PhpUnit requires PHP 5.3.3 or greater.
-
-### Setup through composer
-
-First, add Prophecy to the list of dependencies inside your `composer.json`:
-
-```json
-{
-    "require-dev": {
-        "phpspec/prophecy-phpunit": "~1.0"
-    }
-}
+```
+composer require phpspec/prophecy-phpunit
 ```
 
-Then simply install it with composer:
+If you only need this library during development, for instance to run your project's test suite, then you should add it as a development-time dependency:
 
-```bash
-$> composer install --prefer-dist
 ```
-
-You can read more about Composer on its [official webpage](http://getcomposer.org).
-
-## How to use it
-
-The special ``ProphecyTestCase`` exposes a method ``prophesize($classOrInterface = null)``
-to use Prophecy.
-For the usage of the Prophecy doubles, please refer to the [Prophecy documentation](https://github.com/phpspec/prophecy).
-
-If you want to add some logic in the ``tearDown`` method you are advised to
-call the parent method - doing so will ensure that the Prophect object has
-been unset before the next test case runs.
+composer require --dev phpspec/prophecy-phpunit
+```

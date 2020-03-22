@@ -1,14 +1,13 @@
-<?php
-
+<?php declare(strict_types=1);
 namespace Prophecy\PhpUnit\Tests\Fixtures;
 
 use Prophecy\PhpUnit\ProphecyTestCase;
 
-class MockFailure extends ProphecyTestCase
+final class MockFailure extends ProphecyTestCase
 {
-    public function testMethod()
+    public function testMethod(): void
     {
-        $prophecy = $this->prophesize('DateTime');
+        $prophecy = $this->prophesize(\DateTime::class);
 
         $prophecy->format('Y-m-d')->shouldBeCalledTimes(2);
 
