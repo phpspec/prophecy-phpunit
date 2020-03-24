@@ -1,12 +1,9 @@
 # Prophecy
 
-## This package is not maintained anymore. Prophecy is supported in PHPUnit directly as of PHPUnit 4.5, making this package useless.
-
 [![Build Status](https://travis-ci.org/phpspec/prophecy-phpunit.png?branch=master)](https://travis-ci.org/phpspec/prophecy-phpunit)
 
 Prophecy PhpUnit integrates the [Prophecy](https://github.com/phpspec/prophecy) mocking
-library with [PHPUnit](http://phpunit.de) to provide an easier mocking in your testsuite.
-
+library with [PHPUnit](https://phpunit.de) to provide an easier mocking in your testsuite.
 
 ## Usage
 
@@ -35,27 +32,16 @@ class UserTest extends ProphecyTestCase
 
 ### Prerequisites
 
-Prophecy PhpUnit requires PHP 5.3.3 or greater.
+Prophecy PhpUnit requires PHP 7.3 or greater.
+Prophecy PhpUnit requires PHPUnit 9.1 or greater. Older versions of PHPUnit are providing the Prophecy integration themselves.
 
 ### Setup through composer
 
-First, add Prophecy to the list of dependencies inside your `composer.json`:
-
-```json
-{
-    "require-dev": {
-        "phpspec/prophecy-phpunit": "~1.0"
-    }
-}
-```
-
-Then simply install it with composer:
-
 ```bash
-$> composer install --prefer-dist
+$> composer require --dev phpspec/prophecy-phpunit
 ```
 
-You can read more about Composer on its [official webpage](http://getcomposer.org).
+You can read more about Composer on its [official webpage](https://getcomposer.org).
 
 ## How to use it
 
@@ -63,6 +49,3 @@ The special ``ProphecyTestCase`` exposes a method ``prophesize($classOrInterface
 to use Prophecy.
 For the usage of the Prophecy doubles, please refer to the [Prophecy documentation](https://github.com/phpspec/prophecy).
 
-If you want to add some logic in the ``tearDown`` method you are advised to
-call the parent method - doing so will ensure that the Prophect object has
-been unset before the next test case runs.
