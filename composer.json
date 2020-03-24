@@ -20,7 +20,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Prophecy\\PhpUnit\\": ""
+            "Prophecy\\PhpUnit\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Prophecy\\PhpUnit\\Tests\\Fixtures\\": "fixtures",
+            "Prophecy\\PhpUnit\\Tests\\": "tests"
         }
     },
     "extra": {
