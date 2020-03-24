@@ -14,7 +14,7 @@ use Prophecy\Prophet;
 abstract class ProphecyTestCase extends TestCase
 {
     /**
-     * @var Prophet
+     * @var Prophet|null
      */
     private $prophet;
 
