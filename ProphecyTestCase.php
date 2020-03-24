@@ -30,7 +30,7 @@ abstract class ProphecyTestCase extends TestCase
             $this->recordDoubledType($classOrInterface);
         }
 
-        return $this->prophet()->prophesize($classOrInterface);
+        return $this->getProphet()->prophesize($classOrInterface);
     }
 
     protected function verifyMockObjects(): void
@@ -61,7 +61,7 @@ abstract class ProphecyTestCase extends TestCase
         }
     }
 
-    private function prophet(): Prophet
+    private function getProphet(): Prophet
     {
         if ($this->prophet === null) {
             $this->prophet = new Prophet;
