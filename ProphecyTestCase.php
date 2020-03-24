@@ -55,7 +55,10 @@ abstract class ProphecyTestCase extends TestCase
         }
     }
 
-    protected function tearDown(): void
+    /**
+     * @after
+     */
+    protected function prophecyTearDown(): void
     {
         if (null !== $this->prophet && !$this->prophecyAssertionsCounted) {
             // Some Prophecy assertions may have been done in tests themselves even when a failure happened before checking mock objects.
