@@ -37,14 +37,16 @@ abstract class ProphecyTestCase extends TestCase
     {
         parent::verifyMockObjects();
 
-        if ($this->prophet !== null) {
-            try {
-                $this->prophet->checkPredictions();
-            } catch (PredictionException $e) {
-                throw new AssertionFailedError($e->getMessage());
-            } finally {
-                $this->countProphecyAssertions();
-            }
+        if ($this->prophet === null) {
+            return;
+        }
+
+        try {
+            $this->prophet->checkPredictions();
+        } catch (PredictionException $e) {
+            throw new AssertionFailedError($e->getMessage());
+        } finally {
+            $this->countProphecyAssertions();
         }
     }
 
