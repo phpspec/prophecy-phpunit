@@ -49,3 +49,29 @@ The special ``ProphecyTestCase`` exposes a method ``prophesize($classOrInterface
 to use Prophecy.
 For the usage of the Prophecy doubles, please refer to the [Prophecy documentation](https://github.com/phpspec/prophecy).
 
+If you need to use the Prophecy integration alongside a custom base TestCase rather than the PHPUnit one, a trait is available with all the necessary logic, except the override of the PHPUnit `verifyMockObjects` method (which cannot be provided by a trait). Use it like that:
+
+```php
+<?php
+
+namespace App;
+
+use Prophecy\PhpUnit\ProphecyTrait;
+
+class MyCustomTest extends ExternalTestCase
+{
+    use ProphecyTrait;
+
+    protected function verifyMockObjects(): void
+    {
+        parent::verifyMockObjects();
+
+        $this->verifyProphecyDoubles();
+    }
+
+    public function testSomething()
+    {
+        // You have the same features than when extending ProphecyTestCase now.
+    }
+}
+```
