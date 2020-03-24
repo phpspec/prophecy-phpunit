@@ -19,6 +19,11 @@ abstract class ProphecyTestCase extends TestCase
     private $prophet;
 
     /**
+     * @var bool
+     */
+    private $prophecyAssertionsCounted = false;
+
+    /**
      * @throws DoubleException
      * @throws InterfaceNotFoundException
      *
@@ -50,8 +55,20 @@ abstract class ProphecyTestCase extends TestCase
         }
     }
 
+    protected function tearDown(): void
+    {
+        if (null !== $this->prophet && !$this->prophecyAssertionsCounted) {
+            // Some Prophecy assertions may have been done in tests themselves even when a failure happened before checking mock objects.
+            $this->countProphecyAssertions();
+        }
+
+        $this->prophet = null;
+    }
+
     private function countProphecyAssertions(): void
     {
+        $this->prophecyAssertionsCounted = true;
+
         foreach ($this->prophet->getProphecies() as $objectProphecy) {
             foreach ($objectProphecy->getMethodProphecies() as $methodProphecies) {
                 foreach ($methodProphecies as $methodProphecy) {
