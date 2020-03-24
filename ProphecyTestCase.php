@@ -1,91 +1,71 @@
-<?php
-
+<?php declare(strict_types=1);
 namespace Prophecy\PhpUnit;
 
+use PHPUnit\Framework\AssertionFailedError;
+use PHPUnit\Framework\TestCase;
+use Prophecy\Exception\Doubler\DoubleException;
+use Prophecy\Exception\Doubler\InterfaceNotFoundException;
 use Prophecy\Exception\Prediction\PredictionException;
+use Prophecy\Prophecy\MethodProphecy;
+use Prophecy\Prophecy\ObjectProphecy;
 use Prophecy\Prophet;
 
-abstract class ProphecyTestCase extends \PHPUnit_Framework_TestCase
+abstract class ProphecyTestCase extends TestCase
 {
     /**
-     * @var Prophet|null
+     * @var Prophet
      */
     private $prophet;
 
-    private $prophecyAssertionsCounted = false;
-
     /**
-     * @param string|null $classOrInterface
+     * @throws DoubleException
+     * @throws InterfaceNotFoundException
      *
-     * @return \Prophecy\Prophecy\ObjectProphecy
+     * @psalm-param class-string|null $type
      */
-    protected function prophesize($classOrInterface = null)
+    protected function prophesize(?string $classOrInterface = null): ObjectProphecy
     {
-        return $this->getProphet()->prophesize($classOrInterface);
+        if (\is_string($classOrInterface)) {
+            $this->recordDoubledType($classOrInterface);
+        }
+
+        return $this->prophet()->prophesize($classOrInterface);
     }
 
-    protected function verifyMockObjects()
+    protected function verifyMockObjects(): void
     {
         parent::verifyMockObjects();
 
-        if (null === $this->prophet) {
-            return;
-        }
-
-        try {
-            $this->prophet->checkPredictions();
-        } catch (\Exception $e) {
-            /** Intentionally left empty */
-        }
-
-        $this->countProphecyAssertions();
-
-        if (isset($e)) {
-            throw $e;
+        if ($this->prophet !== null) {
+            try {
+                $this->prophet->checkPredictions();
+            } catch (PredictionException $e) {
+                throw new AssertionFailedError($e->getMessage());
+            } finally {
+                $this->countProphecyAssertions();
+            }
         }
     }
 
-    protected function tearDown()
+    private function countProphecyAssertions(): void
     {
-        if (null !== $this->prophet && !$this->prophecyAssertionsCounted) {
-            // Some Prophecy assertions may have been done in tests themselves even when a failure happened before checking mock objects.
-            $this->countProphecyAssertions();
-        }
-
-        $this->prophet = null;
-    }
-
-    protected function onNotSuccessfulTest(\Exception $e)
-    {
-        if ($e instanceof PredictionException) {
-            $e = new \PHPUnit_Framework_AssertionFailedError($e->getMessage(), $e->getCode(), $e);
-        }
-
-        return parent::onNotSuccessfulTest($e);
-    }
-
-    /**
-     * @return Prophet
-     */
-    private function getProphet()
-    {
-        if (null === $this->prophet) {
-            $this->prophet = new Prophet();
-        }
-
-        return $this->prophet;
-    }
-
-    private function countProphecyAssertions()
-    {
-        $this->prophecyAssertionsCounted = true;
-
         foreach ($this->prophet->getProphecies() as $objectProphecy) {
             foreach ($objectProphecy->getMethodProphecies() as $methodProphecies) {
                 foreach ($methodProphecies as $methodProphecy) {
-                    $this->addToAssertionCount(count($methodProphecy->getCheckedPredictions()));
+                    \assert($methodProphecy instanceof MethodProphecy);
+
+                    $this->addToAssertionCount(\count($methodProphecy->getCheckedPredictions()));
                 }
             }
         }
+    }
+
+    private function prophet(): Prophet
+    {
+        if ($this->prophet === null) {
+            $this->prophet = new Prophet;
+        }
+
+        return $this->prophet;
     }
 }
