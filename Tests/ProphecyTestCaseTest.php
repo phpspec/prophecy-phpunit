@@ -1,4 +1,5 @@
 <?php declare(strict_types=1);
+
 namespace Prophecy\PhpUnit\Tests;
 
 use PHPUnit\Framework\TestCase;
