@@ -2,10 +2,13 @@
 
 namespace Prophecy\PhpUnit\Tests\Fixtures;
 
-use Prophecy\PhpUnit\ProphecyTestCase;
+use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
-class Success extends ProphecyTestCase
+class Success extends TestCase
 {
+    use ProphecyTrait;
+
     public function testMethod()
     {
         $prophecy = $this->prophesize('DateTime');
