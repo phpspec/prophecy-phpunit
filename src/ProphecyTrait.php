@@ -47,9 +47,9 @@ trait ProphecyTrait
     }
 
     /**
-     * @after
+     * @postCondition
      */
-    protected function checkProphecyPredictions(): void
+    protected function verifyProphecyDoubles(): void
     {
         if ($this->prophet === null) {
             return;
@@ -60,6 +60,17 @@ trait ProphecyTrait
         } catch (PredictionException $e) {
             throw new AssertionFailedError($e->getMessage());
         } finally {
+            $this->countProphecyAssertions();
+        }
+    }
+
+    /**
+     * @after
+     */
+    protected function tearDownProphecy(): void
+    {
+        if (null !== $this->prophet && !$this->prophecyAssertionsCounted) {
+            // Some Prophecy assertions may have been done in tests themselves even when a failure happened before checking mock objects.
             $this->countProphecyAssertions();
         }
 
