@@ -10,9 +10,9 @@ use Prophecy\PhpUnit\Tests\Fixtures\SpyFailure;
 use Prophecy\PhpUnit\Tests\Fixtures\Success;
 
 /**
- * @covers \Prophecy\PhpUnit\ProphecyTestCase
+ * @covers \Prophecy\PhpUnit\ProphecyTrait
  */
-final class ProphecyTestCaseTest extends TestCase
+final class ProphecyTraitTest extends TestCase
 {
     protected function setUp(): void
     {

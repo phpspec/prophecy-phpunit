@@ -5,29 +5,6 @@
 Prophecy PhpUnit integrates the [Prophecy](https://github.com/phpspec/prophecy) mocking
 library with [PHPUnit](https://phpunit.de) to provide an easier mocking in your testsuite.
 
-## Usage
-
-```php
-<?php
-
-use Prophecy\PhpUnit\ProphecyTestCase;
-
-class UserTest extends ProphecyTestCase
-{
-    public function testPasswordHashing()
-    {
-        $hasher = $this->prophesize('App\Security\Hasher');
-        $user   = new App\Entity\User($hasher->reveal());
-
-        $hasher->generateHash($user, 'qwerty')->willReturn('hashed_pass');
-
-        $user->setPassword('qwerty');
-
-        $this->assertEquals('hashed_pass', $user->getPassword());
-    }
-}
-```
-
 ## Installation
 
 ### Prerequisites
@@ -45,33 +22,35 @@ You can read more about Composer on its [official webpage](https://getcomposer.o
 
 ## How to use it
 
-The special ``ProphecyTestCase`` exposes a method ``prophesize($classOrInterface = null)``
-to use Prophecy.
+The trait ``ProphecyTrait`` provides a method ``prophesize($classOrInterface = null)`` to use Prophecy.
 For the usage of the Prophecy doubles, please refer to the [Prophecy documentation](https://github.com/phpspec/prophecy).
 
-If you need to use the Prophecy integration alongside a custom base TestCase rather than the PHPUnit one, a trait is available with all the necessary logic, except the override of the PHPUnit `verifyMockObjects` method (which cannot be provided by a trait). Use it like that:
+Below is a usage example:
 
 ```php
 <?php
 
 namespace App;
 
+use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
+use App\Security\Hasher;
+use App\Entity\User;
 
-class MyCustomTest extends ExternalTestCase
+class UserTest extends TestCase
 {
     use ProphecyTrait;
 
-    protected function verifyMockObjects(): void
+    public function testPasswordHashing()
     {
-        parent::verifyMockObjects();
+        $hasher = $this->prophesize(Hasher::class);
+        $user   = new User($hasher->reveal());
 
-        $this->verifyProphecyDoubles();
-    }
+        $hasher->generateHash($user, 'qwerty')->willReturn('hashed_pass');
 
-    public function testSomething()
-    {
-        // You have the same features than when extending ProphecyTestCase now.
+        $user->setPassword('qwerty');
+
+        $this->assertEquals('hashed_pass', $user->getPassword());
     }
 }
 ```

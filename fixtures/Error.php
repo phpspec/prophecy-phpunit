@@ -2,10 +2,13 @@
 
 namespace Prophecy\PhpUnit\Tests\Fixtures;
 
-use Prophecy\PhpUnit\ProphecyTestCase;
+use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
-class Error extends ProphecyTestCase
+class Error extends TestCase
 {
+    use ProphecyTrait;
+
     public function testMethod()
     {
         $prophecy = $this->prophesize('stdClass');
