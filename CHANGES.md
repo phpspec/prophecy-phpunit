@@ -1,3 +1,7 @@
+# 2.0.0 / 2020-04-07
+
+Rewrite of the library for PHPUnit 9.1+, with a new API based on a trait rather than a base class.
+
 1.1.0 / 2015-02-09
 ==================
 
