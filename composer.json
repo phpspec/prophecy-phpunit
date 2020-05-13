@@ -1,6 +1,6 @@
 {
     "name": "phpspec/prophecy-phpunit",
-    "description": "PhpUnit test case integrating the Prophecy mocking library",
+    "description": "Integrating the Prophecy mocking library in PHPUnit test cases",
     "keywords": ["Phpunit", "Prophecy"],
     "homepage": "http://phpspec.net",
     "type": "library",
