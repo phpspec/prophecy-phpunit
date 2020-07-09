@@ -1,3 +1,7 @@
+# 2.0.1 / 2020-07-09
+
+Add support for PHP 8
+
 # 2.0.0 / 2020-04-07
 
 Rewrite of the library for PHPUnit 9.1+, with a new API based on a trait rather than a base class.
