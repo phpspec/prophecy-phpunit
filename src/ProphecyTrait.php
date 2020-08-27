@@ -34,7 +34,7 @@ trait ProphecyTrait
      * @throws DoubleException
      * @throws InterfaceNotFoundException
      *
-     * @psalm-param class-string|null $type
+     * @psalm-param class-string|null $classOrInterface
      */
     protected function prophesize(?string $classOrInterface = null): ObjectProphecy
     {
