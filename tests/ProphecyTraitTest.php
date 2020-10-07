@@ -5,6 +5,7 @@ namespace Prophecy\PhpUnit\Tests;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Runner\BaseTestRunner;
 use Prophecy\PhpUnit\Tests\Fixtures\Error;
+use Prophecy\PhpUnit\Tests\Fixtures\MockCallMatchFailure;
 use Prophecy\PhpUnit\Tests\Fixtures\MockFailure;
 use Prophecy\PhpUnit\Tests\Fixtures\SpyFailure;
 use Prophecy\PhpUnit\Tests\Fixtures\Success;
@@ -51,6 +52,19 @@ final class ProphecyTraitTest extends TestCase
     public function testMockPredictionFailure(): void
     {
         $test = new MockFailure('testMethod');
+
+        $result = $test->run();
+
+        $this->assertSame(0, $result->errorCount());
+        $this->assertSame(1, $result->failureCount());
+        $this->assertCount(1, $result);
+        $this->assertSame(1, $test->getNumAssertions());
+        $this->assertSame(BaseTestRunner::STATUS_FAILURE, $test->getStatus());
+    }
+
+    public function testMockCallDoesntMatchExpectation(): void
+    {
+        $test = new MockCallMatchFailure('testMethod');
 
         $result = $test->run();
 
