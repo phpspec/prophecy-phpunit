@@ -18,6 +18,9 @@
         "phpspec/prophecy": "^1.18",
         "phpunit/phpunit":"^9.1 || ^10.1"
     },
+    "require-dev": {
+        "phar-io/manifest": "^2.0"
+    },
     "autoload": {
         "psr-4": {
             "Prophecy\\PhpUnit\\": "src"
