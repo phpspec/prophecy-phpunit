@@ -34,7 +34,9 @@ trait ProphecyTrait
      * @throws DoubleException
      * @throws InterfaceNotFoundException
      *
-     * @psalm-param class-string|null $classOrInterface
+     * @psalm-template RealInstanceType of object
+     * @psalm-param class-string<RealInstanceType>|null $classOrInterface
+     * @psalm-return ObjectProphecy&RealInstanceType
      */
     protected function prophesize(?string $classOrInterface = null): ObjectProphecy
     {
