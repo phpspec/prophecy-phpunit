@@ -15,7 +15,7 @@ Prophecy PhpUnit requires PHPUnit 9.1 or greater. Older versions of PHPUnit are 
 ### Setup through composer
 
 ```bash
-$> composer require --dev phpspec/prophecy-phpunit
+composer require --dev phpspec/prophecy-phpunit
 ```
 
 You can read more about Composer on its [official webpage](https://getcomposer.org).
