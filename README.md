@@ -20,6 +20,13 @@ composer require --dev phpspec/prophecy-phpunit
 
 You can read more about Composer on its [official webpage](https://getcomposer.org).
 
+> :bulb: The package can be safely required and used on PHP 5.4 to current in combination with PHPUnit 4.8.36/5.7.21 to current.
+>
+> When the PHPUnit `prophesize()` method is natively available and not deprecated (PHPUnit 4.8 - 9.0), the PHPUnit
+> native functionality will be used.
+> For PHPUnit 9.1 and higher, the extension will kick in and polyfill the functionality which was deprecated in PHPUnit.
+
+
 ## How to use it
 
 The trait ``ProphecyTrait`` provides a method ``prophesize($classOrInterface = null)`` to use Prophecy.

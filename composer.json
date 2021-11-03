@@ -14,14 +14,12 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "^7.3 || ^8",
+        "php": "^5.4 || ^7.0 || ^8.0",
         "phpspec/prophecy": "^1.3",
-        "phpunit/phpunit":"^9.1"
+        "phpunit/phpunit": "^4.8.36 || ^5.7.21 || ^6.0 || ^7.0 || ^8.0 || ^9.1"
     },
     "autoload": {
-        "psr-4": {
-            "Prophecy\\PhpUnit\\": "src"
-        }
+        "files": ["prophecy-phpunit-autoload.php"]
     },
     "autoload-dev": {
         "psr-4": {
