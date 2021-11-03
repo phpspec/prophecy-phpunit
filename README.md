@@ -1,6 +1,6 @@
 # Prophecy
 
-[![Build Status](https://travis-ci.org/phpspec/prophecy-phpunit.png?branch=master)](https://travis-ci.org/phpspec/prophecy-phpunit)
+[![Build Status](https://github.com/phpspec/prophecy-phpunit/actions/workflows/ci.yml/badge.svg)](https://github.com/phpspec/prophecy-phpunit/actions/workflows/ci.yml)
 
 Prophecy PhpUnit integrates the [Prophecy](https://github.com/phpspec/prophecy) mocking
 library with [PHPUnit](https://phpunit.de) to provide an easier mocking in your testsuite.
