@@ -11,6 +11,8 @@ use Prophecy\PhpUnit\Tests\Fixtures\Success;
 
 /**
  * @covers \Prophecy\PhpUnit\ProphecyTrait
+ *
+ * @requires PHPUnit 9.1
  */
 final class ProphecyTraitTest extends TestCase
 {

@@ -3,7 +3,8 @@
 <phpunit colors="true" bootstrap="vendor/autoload.php">
     <testsuites>
         <testsuite name="Prophecy PhpUnit Test Suite">
-            <directory suffix="Test.php">./tests/</directory>
+            <directory suffix="Test.php">./tests/Availability</directory>
+            <directory phpVersion="7.3.0" phpVersionOperator=">=" suffix="Test.php">./tests/</directory>
         </testsuite>
     </testsuites>
 
