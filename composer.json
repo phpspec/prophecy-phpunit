@@ -15,7 +15,7 @@
     "prefer-stable": true,
     "require": {
         "php": "^7.3 || ^8",
-        "phpspec/prophecy": "^1.3",
+        "phpspec/prophecy": "^1.10.0",
         "phpunit/phpunit":"^9.1"
     },
     "autoload": {
