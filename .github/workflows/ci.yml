@@ -35,19 +35,8 @@ jobs:
       fail-fast: false
       matrix:
         php: ['5.4', '5.5', '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1']
-        dependency-versions: ['highest']
 
-        include:
-          - php: '7.3'
-            dependency-versions: 'lowest'
-          - php: '7.4'
-            dependency-versions: 'lowest'
-          - php: '8.0'
-            dependency-versions: 'lowest'
-          - php: '8.1'
-            dependency-versions: 'lowest'
-
-    name: PHP ${{ matrix.php }} - ${{ matrix.dependency-versions }}
+    name: PHP ${{ matrix.php }}
 
     steps:
       - name: Checkout code
@@ -60,16 +49,10 @@ jobs:
           ini-values: zend.assertions=1, error_reporting=-1, display_errors=On
           coverage: xdebug
 
-      - name: 'Composer: update PHPUnit for testing lowest'
-        if: ${{ matrix.dependency-versions == 'lowest' }}
-        run: composer require --no-update phpunit/phpunit:"^9.1"
-
       # Install dependencies and handle caching in one go.
       # @link https://github.com/marketplace/actions/install-composer-dependencies
       - name: Install Composer dependencies
         uses: "ramsey/composer-install@v1"
-        with:
-          dependency-versions: ${{ matrix.dependency-versions }}
 
       - name: Execute Unit Tests
         run: vendor/bin/phpunit --coverage-text
