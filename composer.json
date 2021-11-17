@@ -19,7 +19,9 @@
         "phpunit/phpunit": "^4.8.36 || ^5.7.21 || ^6.0 || ^7.0 || ^8.0 || ^9.1"
     },
     "autoload": {
-        "files": ["prophecy-phpunit-autoload.php"]
+        "psr-4": {
+            "Prophecy\\PhpUnit\\": "src"
+        }
     },
     "autoload-dev": {
         "psr-4": {

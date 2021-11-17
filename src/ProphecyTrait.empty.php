@@ -3,7 +3,7 @@
 namespace Prophecy\PhpUnit;
 
 /**
- * Prophecy trait for use with PHPUnit 4.x - 8.x.
+ * Prophecy trait for use with PHPUnit 4.x - 9.0.
  *
  * As this trait is empty, calls to `prophesize()` will automatically fall through
  * to PHPUnit itself and will use the PHPUnit native `prophesize()` method.

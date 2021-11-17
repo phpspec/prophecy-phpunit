@@ -1,110 +1,41 @@
-<?php declare(strict_types=1);
+<?php
 
 namespace Prophecy\PhpUnit;
 
-use PHPUnit\Framework\AssertionFailedError;
-use PHPUnit\Framework\TestCase;
-use Prophecy\Exception\Doubler\DoubleException;
-use Prophecy\Exception\Doubler\InterfaceNotFoundException;
-use Prophecy\Exception\Prediction\PredictionException;
-use Prophecy\Prophecy\MethodProphecy;
-use Prophecy\Prophecy\ObjectProphecy;
-use Prophecy\Prophet;
+use PHPUnit\Runner\Version;
+use PHPUnit_Runner_Version;
 
 /**
- * @mixin TestCase
+ * Load the prophecy trait.
+ *
+ * {@internal The code in this file must be PHP cross-version compatible for PHP 5.4 - current!}
  */
-trait ProphecyTrait
+
+/**
+ * Retrieve the PHPUnit version id.
+ *
+ * As both the pre-PHPUnit 6 class, as well as the PHPUnit 6+ class contain the `id()` function,
+ * this should work independently of whether or not another library may have aliased the class.
+ *
+ * @return string Version number as a string.
+ */
+function getPHPUnitVersion()
 {
-    /**
-     * @var Prophet|null
-     *
-     * @internal
-     */
-    private $prophet;
-
-    /**
-     * @var bool
-     *
-     * @internal
-     */
-    private $prophecyAssertionsCounted = false;
-
-    /**
-     * @throws DoubleException
-     * @throws InterfaceNotFoundException
-     *
-     * @psalm-param class-string|null $classOrInterface
-     */
-    protected function prophesize(?string $classOrInterface = null): ObjectProphecy
-    {
-        if (\is_string($classOrInterface)) {
-            \assert($this instanceof TestCase);
-            $this->recordDoubledType($classOrInterface);
-        }
-
-        return $this->getProphet()->prophesize($classOrInterface);
+    if (\class_exists('\PHPUnit\Runner\Version')) {
+        return Version::id();
     }
 
-    /**
-     * @postCondition
-     */
-    protected function verifyProphecyDoubles(): void
-    {
-        if ($this->prophet === null) {
-            return;
-        }
-
-        try {
-            $this->prophet->checkPredictions();
-        } catch (PredictionException $e) {
-            throw new AssertionFailedError($e->getMessage());
-        } finally {
-            $this->countProphecyAssertions();
-        }
+    if (\class_exists('\PHPUnit_Runner_Version')) {
+        return PHPUnit_Runner_Version::id();
     }
 
-    /**
-     * @after
-     */
-    protected function tearDownProphecy(): void
-    {
-        if (null !== $this->prophet && !$this->prophecyAssertionsCounted) {
-            // Some Prophecy assertions may have been done in tests themselves even when a failure happened before checking mock objects.
-            $this->countProphecyAssertions();
-        }
+    return '0';
+}
 
-        $this->prophet = null;
-    }
 
-    /**
-     * @internal
-     */
-    private function countProphecyAssertions(): void
-    {
-        \assert($this instanceof TestCase);
-        $this->prophecyAssertionsCounted = true;
-
-        foreach ($this->prophet->getProphecies() as $objectProphecy) {
-            foreach ($objectProphecy->getMethodProphecies() as $methodProphecies) {
-                foreach ($methodProphecies as $methodProphecy) {
-                    \assert($methodProphecy instanceof MethodProphecy);
-
-                    $this->addToAssertionCount(\count($methodProphecy->getCheckedPredictions()));
-                }
-            }
-        }
-    }
-
-    /**
-     * @internal
-     */
-    private function getProphet(): Prophet
-    {
-        if ($this->prophet === null) {
-            $this->prophet = new Prophet;
-        }
-
-        return $this->prophet;
-    }
+if (\version_compare(namespace\getPHPUnitVersion(), '9.1.0', '>=')) {
+    // PHPUnit >= 9.1.0.
+    require_once __DIR__ . '/ProphecyTrait.actual.php';
+} else {
+    require_once __DIR__ . '/ProphecyTrait.empty.php';
 }
