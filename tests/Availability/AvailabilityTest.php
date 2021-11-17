@@ -4,9 +4,10 @@ namespace Prophecy\PhpUnit\Tests\Availability;
 
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Prophecy\PhpUnit\Tests\Fixtures\Success;
 
 /**
- * Testing that the autoloading of the empty `ProphecyTrait` trait for PHPUnit 4.x - 9.1 works correctly.
+ * Testing that the autoloading of the empty `ProphecyTrait` trait for PHPUnit 4.x - 9.0 works correctly.
  *
  * {@internal The code in this file must be PHP cross-version compatible for PHP 5.4 - current!}
  *
@@ -14,16 +15,17 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 final class AvailabilityTest extends TestCase
 {
-    use ProphecyTrait;
-
-    public function testMethod()
+    public function testSuccessfullyCallingProphesizeMethod()
     {
-        $prophecy = $this->prophesize('DateTime');
+        $this->assertTrue(trait_exists('Prophecy\PhpUnit\ProphecyTrait'), 'Failed to assert that the ProphecyTrait is avialable');
 
-        $prophecy->format('Y-m-d')->shouldBeCalled();
+        $test = new Success('testMethod');
 
-        $double = $prophecy->reveal();
+        $result = $test->run();
 
-        $double->format('Y-m-d');
+        $this->assertSame(0, $result->errorCount(), 'Error count is not 0');
+        $this->assertSame(0, $result->failureCount(), 'Failure count is not 0');
+        $this->assertCount(1, $result, 'Result is not 1');
+        $this->assertSame(1, $test->getNumAssertions(), 'Number of assertions is not 1');
     }
 }
