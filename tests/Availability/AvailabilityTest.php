@@ -28,7 +28,7 @@ final class AvailabilityTest extends TestCase
 
     public function testSuccessfullyCallingProphesizeMethod()
     {
-        $this->assertTrue(trait_exists('Prophecy\PhpUnit\ProphecyTrait'), 'Failed to assert that the ProphecyTrait is avialable');
+        $this->assertTrue(trait_exists('Prophecy\PhpUnit\ProphecyTrait'), 'Failed to assert that the ProphecyTrait is available');
 
         $test = new Success('testMethod');
 

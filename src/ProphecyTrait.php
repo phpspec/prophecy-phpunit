@@ -17,6 +17,8 @@ use PHPUnit_Runner_Version;
  * As both the pre-PHPUnit 6 class, as well as the PHPUnit 6+ class contain the `id()` function,
  * this should work independently of whether or not another library may have aliased the class.
  *
+ * @internal
+ *
  * @return string Version number as a string.
  */
 function getPHPUnitVersion()
@@ -33,7 +35,7 @@ function getPHPUnitVersion()
 }
 
 
-if (\version_compare(namespace\getPHPUnitVersion(), '9.1.0', '>=')) {
+if (\version_compare(getPHPUnitVersion(), '9.1.0', '>=')) {
     // PHPUnit >= 9.1.0.
     require_once __DIR__ . '/ProphecyTrait.actual.php';
 } else {
