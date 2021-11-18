@@ -15,6 +15,17 @@ use Prophecy\PhpUnit\Tests\Fixtures\Success;
  */
 final class AvailabilityTest extends TestCase
 {
+    /**
+     * @before
+     */
+    protected function declareTestsuiteConstant()
+    {
+        // Define the constant because our tests are running PHPUnit test cases themselves
+        if (!\defined('PHPUNIT_TESTSUITE')) {
+            \define('PHPUNIT_TESTSUITE', true);
+        }
+    }
+
     public function testSuccessfullyCallingProphesizeMethod()
     {
         $this->assertTrue(trait_exists('Prophecy\PhpUnit\ProphecyTrait'), 'Failed to assert that the ProphecyTrait is avialable');
