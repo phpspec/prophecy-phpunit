@@ -15,9 +15,15 @@
     "prefer-stable": true,
     "require": {
         "php": "^7.3 || ^8",
-        "phpspec/prophecy": "^1.3",
+        "phpspec/prophecy": "dev-allow-sebastian-comparator-5 as 1.15",
         "phpunit/phpunit": "^10.0.x-dev"
     },
+    "repositories": [
+        {
+            "type": "github",
+            "url": "https://github.com/Jean85/prophecy"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Prophecy\\PhpUnit\\": "src"
