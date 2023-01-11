@@ -5,7 +5,7 @@ namespace Prophecy\PhpUnit\Tests\Fixtures;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 
-class Error extends TestCase
+class WrongCall extends TestCase
 {
     use ProphecyTrait;
 
