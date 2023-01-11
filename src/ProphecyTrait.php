@@ -38,11 +38,6 @@ trait ProphecyTrait
      */
     protected function prophesize(?string $classOrInterface = null): ObjectProphecy
     {
-        if (\is_string($classOrInterface)) {
-            \assert($this instanceof TestCase);
-            $this->recordDoubledType($classOrInterface);
-        }
-
         return $this->getProphet()->prophesize($classOrInterface);
     }
 
