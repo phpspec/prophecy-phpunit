@@ -6,8 +6,8 @@
          colors="true"
 >
   <testsuites>
-    <testsuite name="Prophecy PhpUnit Test Suite">
-      <directory suffix="Test.php">./tests/</directory>
+    <testsuite name="Prophecy End2End PHPT Test Suite">
+      <directory suffix=".phpt">./tests/</directory>
     </testsuite>
   </testsuites>
   <coverage>
