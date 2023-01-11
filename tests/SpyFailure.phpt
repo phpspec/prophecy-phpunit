@@ -3,6 +3,7 @@ A test with a spy fails due to expected call not made
 --FILE--
 <?php
 
+require_once dirname(__DIR__) . '/xdebug_filter.php'; 
 require dirname(__DIR__) . '/vendor/autoload.php';
 
 (new PHPUnit\TextUI\Application())->run(['phpunit', 'fixtures/SpyFailure.php', '--no-progress'], false);

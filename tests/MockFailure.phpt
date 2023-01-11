@@ -3,6 +3,7 @@ A test with a mock fails due to a missing expected call
 --FILE--
 <?php
 
+require_once dirname(__DIR__) . '/xdebug_filter.php'; 
 require dirname(__DIR__) . '/vendor/autoload.php';
 
 (new PHPUnit\TextUI\Application())->run(['phpunit', 'fixtures/MockFailure.php', '--no-progress'], false);

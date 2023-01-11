@@ -3,6 +3,7 @@ A test with a mock is executed successfully
 --FILE--
 <?php
 
+require_once dirname(__DIR__) . '/xdebug_filter.php'; 
 require dirname(__DIR__) . '/vendor/autoload.php';
 
 (new PHPUnit\TextUI\Application())->run(['phpunit', 'fixtures/Success.php', '--no-progress'], false);
