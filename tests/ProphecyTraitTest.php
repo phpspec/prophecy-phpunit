@@ -6,6 +6,7 @@ use PHPUnit\Framework\TestCase;
 use PHPUnit\Runner\BaseTestRunner;
 use Prophecy\PhpUnit\Tests\Fixtures\Error;
 use Prophecy\PhpUnit\Tests\Fixtures\MockFailure;
+use Prophecy\PhpUnit\Tests\Fixtures\NoProphecy;
 use Prophecy\PhpUnit\Tests\Fixtures\SpyFailure;
 use Prophecy\PhpUnit\Tests\Fixtures\Success;
 
@@ -72,5 +73,18 @@ final class ProphecyTraitTest extends TestCase
         $this->assertCount(1, $result);
         $this->assertSame(0, $test->getNumAssertions());
         $this->assertSame(BaseTestRunner::STATUS_ERROR, $test->getStatus());
+    }
+
+    public function testNoProphecy(): void
+    {
+        $test = new NoProphecy('testMethod');
+
+        $result = $test->run();
+
+        $this->assertSame(0, $result->errorCount());
+        $this->assertSame(0, $result->failureCount());
+        $this->assertCount(1, $result);
+        $this->assertSame(1, $test->getNumAssertions());
+        $this->assertSame(BaseTestRunner::STATUS_PASSED, $test->getStatus());
     }
 }
