@@ -3,10 +3,9 @@ A test with a mock fails due to a missing expected call
 --FILE--
 <?php
 
-require_once dirname(__DIR__) . '/xdebug_filter.php'; 
-require dirname(__DIR__) . '/vendor/autoload.php';
+require_once __DIR__ . '/run_test.php';
 
-(new \PHPUnit\TextUI\Command())->run(['phpunit', 'fixtures/MockFailure.php'], false);
+\Prophecy\PhpUnit\Tests\runTest('MockFailure');
 --EXPECTF--
 PHPUnit %s
 
@@ -25,6 +24,7 @@ Double\DateTime\P1:
       - format("Y-m-d") @ fixtures/MockFailure.php:%d
 
 %s/src/ProphecyTrait.php:%d
+%s/tests/run_test.php:%d
 
 FAILURES!
 Tests: 1, Assertions: 1, Failures: 1.

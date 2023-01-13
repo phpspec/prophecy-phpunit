@@ -3,10 +3,9 @@ A test with a spy fails due to expected call not made
 --FILE--
 <?php
 
-require_once dirname(__DIR__) . '/xdebug_filter.php'; 
-require dirname(__DIR__) . '/vendor/autoload.php';
+require_once __DIR__ . '/run_test.php';
 
-(new \PHPUnit\TextUI\Command())->run(['phpunit', 'fixtures/SpyFailure.php'], false);
+\Prophecy\PhpUnit\Tests\runTest('SpyFailure');
 --EXPECTF--
 PHPUnit %s
 
@@ -20,6 +19,8 @@ There was 1 failure:
 No calls have been made that match:
   Double\DateTime\P1->format(exact("Y-m-d"))
 but expected at least one.
+
+%s/tests/run_test.php:%d
 
 FAILURES!
 Tests: 1, Assertions: 1, Failures: 1.

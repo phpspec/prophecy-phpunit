@@ -3,10 +3,9 @@ A test fails due to calling an unexisting method on a mock
 --FILE--
 <?php
 
-require_once dirname(__DIR__) . '/xdebug_filter.php'; 
-require dirname(__DIR__) . '/vendor/autoload.php';
+require_once __DIR__ . '/run_test.php';
 
-(new \PHPUnit\TextUI\Command())->run(['phpunit', 'fixtures/WrongCall.php'], false);
+\Prophecy\PhpUnit\Tests\runTest('WrongCall');
 --EXPECTF--
 PHPUnit %s
 
@@ -20,6 +19,7 @@ There was 1 error:
 Prophecy\Exception\Doubler\MethodNotFoundException: Method `Double\stdClass\P1::talk()` is not defined.
 
 %a%s/fixtures/WrongCall.php:%d
+%s/tests/run_test.php:%d
 
 ERRORS!
 Tests: 1, Assertions: 0, Errors: 1.

@@ -3,10 +3,9 @@ A test without Prophecy is executed with no additional assertions counted
 --FILE--
 <?php
 
-require_once dirname(__DIR__) . '/xdebug_filter.php'; 
-require dirname(__DIR__) . '/vendor/autoload.php';
+require_once __DIR__ . '/run_test.php';
 
-(new \PHPUnit\TextUI\Command())->run(['phpunit', 'fixtures/NoProphecy.php'], false);
+\Prophecy\PhpUnit\Tests\runTest('NoProphecy');
 --EXPECTF--
 PHPUnit %s
 

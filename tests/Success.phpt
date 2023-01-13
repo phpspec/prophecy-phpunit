@@ -3,10 +3,9 @@ A test with a mock is executed successfully
 --FILE--
 <?php
 
-require_once dirname(__DIR__) . '/xdebug_filter.php'; 
-require dirname(__DIR__) . '/vendor/autoload.php';
+require_once __DIR__ . '/run_test.php';
 
-(new \PHPUnit\TextUI\Command())->run(['phpunit', 'fixtures/Success.php'], false);
+\Prophecy\PhpUnit\Tests\runTest('Success');
 --EXPECTF--
 PHPUnit %s
 
