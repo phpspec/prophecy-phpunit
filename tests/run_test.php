@@ -4,7 +4,7 @@ namespace Prophecy\PhpUnit\Tests;
 
 use PHPUnit\TextUI\Command;
 
-require_once dirname(__DIR__) . '/xdebug_filter.php';
+require_once __DIR__ . '/xdebug_filter.php';
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 
 function runTest(string $fixtureName): void
