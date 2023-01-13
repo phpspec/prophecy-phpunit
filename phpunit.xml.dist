@@ -7,7 +7,6 @@
 >
   <testsuites>
     <testsuite name="Prophecy PhpUnit Test Suite">
-      <directory suffix="Test.php">./tests/</directory>
       <directory suffix=".phpt">./tests/</directory>
   </testsuite>
   </testsuites>
