@@ -9,6 +9,8 @@ require_once __DIR__ . '/run_test.php';
 --EXPECTF--
 PHPUnit %s
 
+Runtime: %s
+
 E %s 1 / 1 (100%)
 
 Time: %a

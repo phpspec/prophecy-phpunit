@@ -1,11 +1,11 @@
 --TEST--
-A test without Prophecy is executed with no additional assertions counted 
+A test with a Prophecy called without any argument 
 --FILE--
 <?php
 
 require_once __DIR__ . '/run_test.php';
 
-\Prophecy\PhpUnit\Tests\runTest('NoProphecy');
+\Prophecy\PhpUnit\Tests\runTest('NoClass');
 --EXPECTF--
 PHPUnit %s
 

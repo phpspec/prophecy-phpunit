@@ -9,6 +9,8 @@ require_once __DIR__ . '/run_test.php';
 --EXPECTF--
 PHPUnit %s
 
+Runtime: %s
+
 F %s 1 / 1 (100%)
 
 Time: %a
@@ -16,11 +18,11 @@ Time: %a
 There was 1 failure:
 
 1) Prophecy\PhpUnit\Tests\Fixtures\SpyFailure::testMethod
-No calls have been made that match:
+%ao calls have been made that match:
   Double\DateTime\P1->format(exact("Y-m-d"))
 but expected at least one.
 
-%s/tests/run_test.php:%d
+%a/tests/run_test.php:%d
 
 FAILURES!
 Tests: 1, Assertions: 1, Failures: 1.

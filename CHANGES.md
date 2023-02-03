@@ -1,3 +1,8 @@
+# 2.1.0 / TBA
+
+Add support for PHPUnit 10.1+ (10.0 is not supported)
+Bump requirement to Prophecy 1.18+
+
 # 2.0.2 / 2023-04-18
 
 Add the `@not-deprecated` annotation to avoid phpstan reporting `prophesize` as deprecated due to the TestCase deprecation.
