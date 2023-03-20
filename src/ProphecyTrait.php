@@ -35,6 +35,7 @@ trait ProphecyTrait
      * @throws InterfaceNotFoundException
      *
      * @psalm-param class-string|null $classOrInterface
+     * @not-deprecated
      */
     protected function prophesize(?string $classOrInterface = null): ObjectProphecy
     {
