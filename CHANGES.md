@@ -1,3 +1,7 @@
+# 2.0.2 / 2023-04-18
+
+Add the `@not-deprecated` annotation to avoid phpstan reporting `prophesize` as deprecated due to the TestCase deprecation.
+
 # 2.0.1 / 2020-07-09
 
 Add support for PHP 8
