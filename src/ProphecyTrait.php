@@ -39,7 +39,14 @@ trait ProphecyTrait
      */
     protected function prophesize(?string $classOrInterface = null): ObjectProphecy
     {
-        if (\is_string($classOrInterface)) {
+        static $isPhpUnit9;
+        $isPhpUnit9 = $isPhpUnit9 ?? method_exists($this, 'recordDoubledType');
+
+        if (! $isPhpUnit9) {
+            // PHPUnit 10.1
+            $this->registerFailureType(PredictionException::class);
+        } elseif (\is_string($classOrInterface)) {
+            // PHPUnit 9
             \assert($this instanceof TestCase);
             $this->recordDoubledType($classOrInterface);
         }
