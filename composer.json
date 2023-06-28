@@ -1,5 +1,5 @@
 {
-    "name": "phpspec/prophecy-phpunit",
+    "name": "artemeon/prophecy-phpunit",
     "description": "Integrating the Prophecy mocking library in PHPUnit test cases",
     "keywords": ["Phpunit", "Prophecy"],
     "homepage": "http://phpspec.net",
