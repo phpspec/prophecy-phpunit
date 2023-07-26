@@ -14,9 +14,9 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "^7.3 || ^8",
+        "php": "^8.1",
         "phpspec/prophecy": "^1.18",
-        "phpunit/phpunit":"^9.1 || ^10.1"
+        "phpunit/phpunit":"^10.1"
     },
     "autoload": {
         "psr-4": {

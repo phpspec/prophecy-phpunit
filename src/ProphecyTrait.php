@@ -39,11 +39,7 @@ trait ProphecyTrait
      */
     protected static function prophesize(?string $classOrInterface = null): ObjectProphecy
     {
-        if (self::$prophet === null) {
-            self::$prophet = new Prophet();
-        }
-
-        return self::$prophet->prophesize($classOrInterface);
+        return (self::$prophet ??= new Prophet())->prophesize($classOrInterface);
     }
 
     /**
@@ -51,17 +47,7 @@ trait ProphecyTrait
      */
     protected function registerProphecy()
     {
-        static $isPhpUnit9;
-        $isPhpUnit9 = $isPhpUnit9 ?? method_exists(__CLASS__, 'recordDoubledType');
-
-        if (! $isPhpUnit9) {
-            // PHPUnit 10.1
-            $this->registerFailureType(PredictionException::class);
-        } elseif (\is_string($classOrInterface)) {
-            // PHPUnit 9
-            \assert($this instanceof TestCase);
-            $this->recordDoubledType($classOrInterface);
-        }
+        $this->registerFailureType(PredictionException::class);
     }
 
     /**
