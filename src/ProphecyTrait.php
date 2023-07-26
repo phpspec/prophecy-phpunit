@@ -21,7 +21,7 @@ trait ProphecyTrait
      *
      * @internal
      */
-    private $prophet;
+    private static $prophet;
 
     /**
      * @var bool
@@ -37,10 +37,22 @@ trait ProphecyTrait
      * @psalm-param class-string|null $classOrInterface
      * @not-deprecated
      */
-    protected function prophesize(?string $classOrInterface = null): ObjectProphecy
+    protected static function prophesize(?string $classOrInterface = null): ObjectProphecy
+    {
+        if (self::$prophet === null) {
+            self::$prophet = new Prophet();
+        }
+
+        return self::$prophet->prophesize($classOrInterface);
+    }
+
+    /**
+     * @preCondition
+     */
+    protected function registerProphecy()
     {
         static $isPhpUnit9;
-        $isPhpUnit9 = $isPhpUnit9 ?? method_exists($this, 'recordDoubledType');
+        $isPhpUnit9 = $isPhpUnit9 ?? method_exists(__CLASS__, 'recordDoubledType');
 
         if (! $isPhpUnit9) {
             // PHPUnit 10.1
@@ -50,8 +62,6 @@ trait ProphecyTrait
             \assert($this instanceof TestCase);
             $this->recordDoubledType($classOrInterface);
         }
-
-        return $this->getProphet()->prophesize($classOrInterface);
     }
 
     /**
@@ -59,12 +69,12 @@ trait ProphecyTrait
      */
     protected function verifyProphecyDoubles(): void
     {
-        if ($this->prophet === null) {
+        if (self::$prophet === null) {
             return;
         }
 
         try {
-            $this->prophet->checkPredictions();
+            self::$prophet->checkPredictions();
         } catch (PredictionException $e) {
             throw new AssertionFailedError($e->getMessage());
         } finally {
@@ -77,12 +87,12 @@ trait ProphecyTrait
      */
     protected function tearDownProphecy(): void
     {
-        if (null !== $this->prophet && !$this->prophecyAssertionsCounted) {
+        if (null !== self::$prophet && !$this->prophecyAssertionsCounted) {
             // Some Prophecy assertions may have been done in tests themselves even when a failure happened before checking mock objects.
             $this->countProphecyAssertions();
         }
 
-        $this->prophet = null;
+        self::$prophet = null;
     }
 
     /**
@@ -93,7 +103,7 @@ trait ProphecyTrait
         \assert($this instanceof TestCase);
         $this->prophecyAssertionsCounted = true;
 
-        foreach ($this->prophet->getProphecies() as $objectProphecy) {
+        foreach (self::$prophet->getProphecies() as $objectProphecy) {
             foreach ($objectProphecy->getMethodProphecies() as $methodProphecies) {
                 foreach ($methodProphecies as $methodProphecy) {
                     \assert($methodProphecy instanceof MethodProphecy);
@@ -102,17 +112,5 @@ trait ProphecyTrait
                 }
             }
         }
-    }
-
-    /**
-     * @internal
-     */
-    private function getProphet(): Prophet
-    {
-        if ($this->prophet === null) {
-            $this->prophet = new Prophet;
-        }
-
-        return $this->prophet;
     }
 }
