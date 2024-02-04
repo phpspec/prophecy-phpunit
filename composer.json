@@ -15,9 +15,15 @@
     "prefer-stable": true,
     "require": {
         "php": "^7.3 || ^8",
-        "phpspec/prophecy": "^1.18",
+        "phpspec/prophecy": "dev-allow-phpunit-11 as 1.19",
         "phpunit/phpunit":"^9.1 || ^10.1 || ^11.0"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/jean85/prophecy"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Prophecy\\PhpUnit\\": "src"
