@@ -35,8 +35,14 @@ jobs:
       fail-fast: false
       matrix:
         php: ['7.3', '7.4', '8.0', '8.1', '8.2', '8.3']
+        min_stability: ['']
+        name_suffix: ['']
+        include:
+          - php: '8.3'
+            min_stability: 'dev'
+            name_suffix: ' (dev deps)'
 
-    name: PHP ${{ matrix.php }}
+    name: PHP ${{ matrix.php }}${{ matrix.name_suffix }}
 
     steps:
       - name: Checkout code
@@ -48,6 +54,10 @@ jobs:
           php-version: ${{ matrix.php }}
           ini-values: zend.assertions=1, error_reporting=-1, display_errors=On
           coverage: xdebug
+
+      - name: Configure stability
+        if: "matrix.min_stability != ''"
+        run: composer config minimum-stability "${{ matrix.min_stability }}"
 
       - name: Install Composer dependencies
         run: composer install --ansi --no-interaction --no-progress
