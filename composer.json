@@ -11,8 +11,6 @@
             "email": "stof@notk.org"
         }
     ],
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "require": {
         "php": "^7.3 || ^8",
         "phpspec/prophecy": "^1.18",
