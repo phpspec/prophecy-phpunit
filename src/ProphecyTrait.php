@@ -3,6 +3,8 @@
 namespace Prophecy\PhpUnit;
 
 use PHPUnit\Framework\AssertionFailedError;
+use PHPUnit\Framework\Attributes\After;
+use PHPUnit\Framework\Attributes\PostCondition;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Exception\Doubler\DoubleException;
 use Prophecy\Exception\Doubler\InterfaceNotFoundException;
@@ -57,6 +59,7 @@ trait ProphecyTrait
     /**
      * @postCondition
      */
+    #[PostCondition]
     protected function verifyProphecyDoubles(): void
     {
         if ($this->prophet === null) {
@@ -75,6 +78,7 @@ trait ProphecyTrait
     /**
      * @after
      */
+    #[After]
     protected function tearDownProphecy(): void
     {
         if (null !== $this->prophet && !$this->prophecyAssertionsCounted) {
