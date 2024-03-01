@@ -1,3 +1,7 @@
+# 2.2.0
+
+* Add support for PHPUnit 11
+
 # 2.1.0 / 2023-12-08
 
 Add support for PHPUnit 10.1+ (10.0 is not supported)
