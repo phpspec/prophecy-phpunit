@@ -4,5 +4,7 @@
 /.github/ export-ignore
 /CONTRIBUTING.md export-ignore
 /fixtures/ export-ignore
+/phpstan-fixtures/ export-ignore
+/phpstan.dist.neon export-ignore
 /phpunit.xml.dist export-ignore
 /tests/ export-ignore

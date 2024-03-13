@@ -64,3 +64,18 @@ jobs:
 
       - name: Execute Unit Tests
         run: vendor/bin/phpunit
+
+  phpstan:
+    runs-on: ubuntu-latest
+    name: Static analysis
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          ini-file: development
+          coverage: none
+      - name: Install dependencies
+        run: composer update --ansi --no-interaction --no-progress
+      - run: ./vendor/bin/phpstan

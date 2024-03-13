@@ -24,6 +24,7 @@
     "autoload-dev": {
         "psr-4": {
             "Prophecy\\PhpUnit\\Tests\\Fixtures\\": "fixtures",
+            "Prophecy\\PhpUnit\\Tests\\PhpstanFixtures\\": "phpstan-fixtures",
             "Prophecy\\PhpUnit\\Tests\\": "tests"
         }
     },
@@ -31,5 +32,8 @@
         "branch-alias": {
             "dev-master": "2.x-dev"
         }
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.10"
     }
 }
