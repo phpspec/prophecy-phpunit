@@ -1,0 +1,11 @@
+parameters:
+    level: 9
+    treatPhpDocTypesAsCertain: false
+    paths:
+        - ./src/
+        - ./phpstan-fixtures/
+    ignoreErrors:
+        # recordDoubledType exist only in PHPUnit < 10 but the code is checking that before using it.
+        -
+            message: '#^Call to an undefined method Prophecy\\PhpUnit\\Tests\\PhpstanFixtures\\[^:]++\:\:recordDoubledType\(\)\.$#'
+            path: src/ProphecyTrait.php
