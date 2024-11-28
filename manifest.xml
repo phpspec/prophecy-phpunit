@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<phar xmlns="https://phar.io/xml/manifest/1.0">
+    <contains name="prophecy/prophecy-phpunit" version="1.0" type="extension">
+        <extension for="phpunit/phpunit" compatible="^9.1"/>
+    </contains>
+
+    <copyright>
+        <author name="Christophe Coevoet" email="stof@notk.org"/>
+        <license type="MIT" url="https://github.com/phpspec/prophecy-phpunit/blob/master/LICENSE"/>
+    </copyright>
+
+    <requires>
+        <php version="^7.3 || ^8.0"/>
+    </requires>
+</phar>
