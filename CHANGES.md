@@ -1,3 +1,8 @@
+# 2.5.0
+
+* Add support for PHPUnit 13
+* Add a CI job running on PHP 8.5
+
 # 2.4.0
 * Add support for PHPUnit 12
 
