@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phive xmlns="https://phar.io/phive">
+  <phar name="phpab" version="^1.26.0" installed="1.26.0" location="./tools/phpab" copy="true"/>
+</phive>
